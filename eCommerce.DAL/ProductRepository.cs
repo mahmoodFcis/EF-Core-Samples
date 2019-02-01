@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using myMVC.Models;
+﻿using eCommerce.Models;
+using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -68,14 +69,44 @@ namespace eCommerce.DAL
             return _db.Products.Where(p => p.Name.Contains(name)).ToList();
         }
 
-        public List<Product> Get(string name)
+        public List<Product> GetByLinq(string name)
         {
-            return _db.Products.FromSql<Product>("select * from products where Name like '%{0}%'", name).ToList();
+            return _db.Products.Include(p=>p.Category).Where(p => p.Name.Contains(name)).ToList();
+        }
+
+        public List<Product> GetByStatement(string name)
+        {
+            // return _db.Products.FromSql<Product>("select * from products where Name like '%{0}%'", name).ToList();
+
+            // to resolve SQL injection issues
+            SqlParameter nameParam = new SqlParameter("@ProductName", name);
+            //return _db.Products.FromSql<Product>("select products.* from products,categories c where products.Name like @ProductName and c.Id=products.CategoryId ", nameParam).ToList();
+            return _db.Products.FromSql<Product>("select products.* from products inner join categories c on c.id=products.categoryId where products.Name like @ProductName ", nameParam).ToList();
+        }
+
+        public List<Product> GetBySP(string name)
+        {
+            // return _db.Products.FromSql<Product>("select * from products where Name like '%{0}%'", name).ToList();
+
+            // to resolve SQL injection issues
+            SqlParameter nameParam = new SqlParameter("@ProductName", name);
+            //return _db.Products.FromSql<Product>("select products.* from products,categories c where products.Name like @ProductName and c.Id=products.CategoryId ", nameParam).ToList();
+            return _db.Products.FromSql<Product>("exec GetProductsBy @ProductName", nameParam).ToList();
+        }
+
+        public int AddBySPFromContext(string name,decimal price,int categoryId)
+        {
+            // return _db.Products.FromSql<Product>("select * from products where Name like '%{0}%'", name).ToList();
+
+            // to resolve SQL injection issues
+            SqlParameter nameParam = new SqlParameter("@ProductName", name);
+            SqlParameter priceParam = new SqlParameter("@Price", price);
+            SqlParameter categoryParam = new SqlParameter("@CategoryId", categoryId);
+            //return _db.Products.FromSql<Product>("select products.* from products,categories c where products.Name like @ProductName and c.Id=products.CategoryId ", nameParam).ToList();
+            return _db.Database.ExecuteSqlCommand("exec InsertNewProduct @ProductName, @Price, @CategoryId", nameParam,priceParam,categoryParam);
         }
 
 
-
-             
 
     }
 }
