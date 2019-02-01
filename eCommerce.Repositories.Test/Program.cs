@@ -14,7 +14,7 @@ namespace eCommerce.Repositories.Test
             //productsRepo.Add(product);
             //Console.WriteLine(product.Id);
 
-            var product = productsRepo.GetByLinq("computer");
+            var product = productsRepo.GetByView();
 
             //int numberOfAffectedRows=productsRepo.AddBySPFromContext("mobile", 100, 1);
         }

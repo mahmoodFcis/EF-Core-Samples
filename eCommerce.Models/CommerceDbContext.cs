@@ -21,9 +21,17 @@ namespace eCommerce.Models
 
             }
         }
+        //fluent API
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Query<ProductView>().ToView("ProductsView");
+        }
         // DbSets are mapped to tables in the database
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        public DbQuery<ProductView> VProducts { get; set; }
+
         
     }
 }

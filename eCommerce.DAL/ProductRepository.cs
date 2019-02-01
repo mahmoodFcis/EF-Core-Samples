@@ -81,7 +81,7 @@ namespace eCommerce.DAL
             // to resolve SQL injection issues
             SqlParameter nameParam = new SqlParameter("@ProductName", name);
             //return _db.Products.FromSql<Product>("select products.* from products,categories c where products.Name like @ProductName and c.Id=products.CategoryId ", nameParam).ToList();
-            return _db.Products.FromSql<Product>("select products.* from products inner join categories c on c.id=products.categoryId where products.Name like @ProductName ", nameParam).ToList();
+            return _db.Products.FromSql<Product>("select products.*,c.Name from products inner join categories c on c.id=products.categoryId where products.Name like @ProductName ", nameParam).ToList();
         }
 
         public List<Product> GetBySP(string name)
@@ -92,6 +92,15 @@ namespace eCommerce.DAL
             SqlParameter nameParam = new SqlParameter("@ProductName", name);
             //return _db.Products.FromSql<Product>("select products.* from products,categories c where products.Name like @ProductName and c.Id=products.CategoryId ", nameParam).ToList();
             return _db.Products.FromSql<Product>("exec GetProductsBy @ProductName", nameParam).ToList();
+        }
+
+        public List<ProductView> GetByView()
+        {
+            // return _db.Products.FromSql<Product>("select * from products where Name like '%{0}%'", name).ToList();
+            // to resolve SQL injection issues
+           
+            //return _db.Products.FromSql<Product>("select products.* from products,categories c where products.Name like @ProductName and c.Id=products.CategoryId ", nameParam).ToList();
+            return _db.VProducts.ToList();
         }
 
         public int AddBySPFromContext(string name,decimal price,int categoryId)
