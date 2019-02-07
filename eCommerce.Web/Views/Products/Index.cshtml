@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@inject Countries countries 
+<h1>Index</h1>
+<ul>
+    
+    @foreach (string country in countries.GetCountries())
+    {
+        <li> @country</li>
+    }
+</ul>
+
+
+
