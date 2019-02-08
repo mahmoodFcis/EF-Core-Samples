@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using eCommerce.Models.Catalog;
 
 namespace eCommerce.DAL
 {
@@ -43,7 +44,7 @@ namespace eCommerce.DAL
         public void Update(Product updatedProduct)
         {
             _db.Products.Attach(updatedProduct);
-            _db.Entry<Product>(updatedProduct).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.Entry<Product>(updatedProduct).State = EntityState.Modified;
             _db.SaveChanges();
             // updating specific fields
             Product productToUpdated = _db.Products.Where(p => p.Id == updatedProduct.Id).First();
