@@ -1,0 +1,68 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model eCommerce.Web.ViewModels.ProductAddViewModel
+@inject CountriesServices countryService
+ My name is @Model
+
+@inject eCommerce.DAL.ICategoryRepository categoryRep
+@*<select>
+        @foreach (var c in countryService.GetAll())
+        {
+        <option value="@c">@c</option>
+        }
+    </select>*@
+
+<form action="add" method="post">
+    <div class="row">
+        <div class="col-lg-3">
+            @*@Html.LabelFor(m => m.ProductName)*@
+
+
+            <label asp-for="Name"></label>
+        </div>
+        <div class="col-lg-3">
+            <input type="text" required asp-for="Name" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            @*@Html.LabelFor(m => m.ProductName)*@
+
+
+            <label asp-for="Price"></label>
+        </div>
+        <div class="col-lg-3">
+            <input type="number" asp-for="Price" />
+        </div>
+    </div>
+    <div class="row">
+       
+        <div class="col-lg-3">
+            @*@Html.LabelFor(m => m.ProductName)*@
+
+
+            <label asp-for="CategoryId"></label>
+        </div>
+        <div class="col-lg-3">
+           <select asp-for="CategoryId" asp-items="categoryRep.GetAll().Select(c=>new SelectListItem() { Value = c.Id.ToString(), Text = c.Name })">
+               
+           </select>
+        </div>
+    </div>
+    <input value="Save Product" type="submit" />
+
+    <div class="row">
+        <div asp-validation-summary="All">
+
+        </div>
+    </div>
+</form>
+
+
+@Html.Partial("SystemInformation")
+
+@await Component.InvokeAsync("Category")

@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.Models", "eCommer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.DAL", "eCommerce.DAL\eCommerce.DAL.csproj", "{7DD7D4D5-AFDC-4FD1-9777-18EBF78A0E1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.DAL.Test", "eCommerce.Repositories.Test\eCommerce.DAL.Test.csproj", "{38A43084-651E-4CBE-8198-F6B75DA76612}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.DAL.Test", "eCommerce.Repositories.Test\eCommerce.DAL.Test.csproj", "{38A43084-651E-4CBE-8198-F6B75DA76612}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceApp.Models.DbFirst", "CommerceApp.Models.DbFirst\CommerceApp.Models.DbFirst.csproj", "{39FCCF8D-A636-450D-BF15-E2198EFEE24D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommerceApp.Models.DbFirst", "CommerceApp.Models.DbFirst\CommerceApp.Models.DbFirst.csproj", "{39FCCF8D-A636-450D-BF15-E2198EFEE24D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Web", "eCommerce.Web\eCommerce.Web.csproj", "{B0B00925-4480-491B-9C13-88BC2232FA74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{39FCCF8D-A636-450D-BF15-E2198EFEE24D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39FCCF8D-A636-450D-BF15-E2198EFEE24D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39FCCF8D-A636-450D-BF15-E2198EFEE24D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0B00925-4480-491B-9C13-88BC2232FA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B00925-4480-491B-9C13-88BC2232FA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B00925-4480-491B-9C13-88BC2232FA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B00925-4480-491B-9C13-88BC2232FA74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

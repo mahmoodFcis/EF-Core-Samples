@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace eCommerce.DAL
 {
-    public class ProductRepository
+    public class ProductRepository:IProductRepository
     {
         private CommerceDbContext _db;
         public ProductRepository(CommerceDbContext db)
@@ -115,7 +115,9 @@ namespace eCommerce.DAL
             return _db.Database.ExecuteSqlCommand("exec InsertNewProduct @ProductName, @Price, @CategoryId", nameParam,priceParam,categoryParam);
         }
 
-
-
+        public List<Product> GetAll()
+        {
+            return _db.Products.ToList();
+        }
     }
 }

@@ -32,6 +32,7 @@ namespace eCommerce.Models.Migrations
                 principalTable: "Categories",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
+           
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
