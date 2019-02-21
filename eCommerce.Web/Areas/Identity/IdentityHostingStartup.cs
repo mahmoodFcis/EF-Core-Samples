@@ -21,6 +21,7 @@ namespace eCommerce.Web.Areas.Identity
                         context.Configuration.GetConnectionString("IdentityDbContextConnection")));
 
                 services.AddDefaultIdentity<eCommerceWebUser>()
+                .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<IdentityDbContext>();
             });
         }

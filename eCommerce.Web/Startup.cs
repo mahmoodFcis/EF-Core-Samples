@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using eCommerce.DAL;
 using eCommerce.Web.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,11 +14,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace eCommerce.Web
 {
     public class Startup
     {
+        
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -47,12 +52,27 @@ namespace eCommerce.Web
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
             });
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = $"/Identity/Account/Login";
-                options.LogoutPath = $"/Identity/Account/Logout";
-                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
-            });
+           
+
+            // configuration of JWT Authentication
+           
+
+            // Configure JwtIssuerOptions
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+     .AddJwtBearer(options =>
+     {
+         options.TokenValidationParameters = new TokenValidationParameters
+         {
+             ValidateIssuer = true,
+             ValidateAudience = true,
+             ValidateLifetime = true,
+             ValidateIssuerSigningKey = true,
+             ValidIssuer = Configuration["JwtIssuerOptions:Issuer"],
+             ValidAudience = Configuration["JwtIssuerOptions:Issuer"],
+             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]))
+         };
+     });
+
             services.AddSession(options=> {
                 options.Cookie.Name = "ecommerceCookie";
                 options.IdleTimeout = TimeSpan.FromSeconds(60);
