@@ -26,9 +26,11 @@ namespace eCommerce.Web.Controllers
         //[Route("")]
         //[Route("List")]
        // [NonAction]
-       [Authorize()]
+       [Authorize(Roles ="Customer")]
+       //[ResponseCache()]
         public IActionResult Index()
         {
+            
             var products = _productRep.GetAll();
             TempData["Copyright"] = "Copyrights reserver @"+DateTime.Now.Year.ToString();
             ViewData["Title"] = "Products List";

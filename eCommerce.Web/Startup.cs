@@ -59,19 +59,19 @@ namespace eCommerce.Web
 
             // Configure JwtIssuerOptions
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-     .AddJwtBearer(options =>
-     {
-         options.TokenValidationParameters = new TokenValidationParameters
-         {
-             ValidateIssuer = true,
-             ValidateAudience = true,
-             ValidateLifetime = true,
-             ValidateIssuerSigningKey = true,
-             ValidIssuer = Configuration["JwtIssuerOptions:Issuer"],
-             ValidAudience = Configuration["JwtIssuerOptions:Issuer"],
-             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]))
-         };
-     });
+            .AddJwtBearer(options =>
+             {
+                 options.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     ValidateIssuer = true,
+                     ValidateAudience = true,
+                     ValidateLifetime = true,
+                     ValidateIssuerSigningKey = true,
+                     ValidIssuer = Configuration["JwtIssuerOptions:Issuer"],
+                     ValidAudience = Configuration["JwtIssuerOptions:Issuer"],
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]))
+                 };
+             });
 
             services.AddSession(options=> {
                 options.Cookie.Name = "ecommerceCookie";

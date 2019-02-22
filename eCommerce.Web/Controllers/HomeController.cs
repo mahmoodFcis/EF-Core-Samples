@@ -8,6 +8,7 @@ using eCommerce.Web.Models;
 
 namespace eCommerce.Web.Controllers
 {
+    [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         

@@ -23,6 +23,8 @@ namespace eCommerce.Web.Controllers
         private readonly UserManager<eCommerceWebUser> _userManager;
         public AuthController(IConfiguration config, SignInManager<eCommerceWebUser> signInManager, UserManager<eCommerceWebUser> userManager)
         {
+            RoleManager<IdentityRole> roleManager;
+           
             _userManager = userManager;
             _config = config;
             _signInManager = signInManager;
@@ -55,8 +57,8 @@ namespace eCommerce.Web.Controllers
 
             foreach(string role in roles)
             {
-
-                claims.Add(new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", role));
+        //"http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+                claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
             
