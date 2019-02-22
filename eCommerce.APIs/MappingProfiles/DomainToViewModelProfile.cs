@@ -6,7 +6,7 @@ using AutoMapper;
 using eCommerce.Models;
 using eCommerce.ViewModels;
 
-namespace eCommerce.Web.MappingProfiles
+namespace eCommerce.APIs.MappingProfiles
 {
     public class DomainToViewModelProfile:Profile
     {
@@ -20,6 +20,7 @@ namespace eCommerce.Web.MappingProfiles
 
             CreateMap<ProductAddViewModel, Product>().ReverseMap();
             CreateMap<CategoryViewModel, Category>().ReverseMap();
+            CreateMap<ProductUpdateViewModel, Product>().ReverseMap();
 
         }
     }

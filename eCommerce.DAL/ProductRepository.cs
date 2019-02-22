@@ -20,12 +20,12 @@ namespace eCommerce.DAL
             _db = new CommerceDbContext();
         }
 
-        public void Add(Product product)
+        public int Add(Product product)
         {
             try
             {
-                _db.Products.Add(product);
-                _db.SaveChanges();
+               // _db.Products.Add(product);
+                return _db.SaveChanges();
             }
             catch(SqlException ex)
             {
@@ -42,9 +42,9 @@ namespace eCommerce.DAL
 
         public void Update(Product updatedProduct)
         {
-            _db.Products.Attach(updatedProduct);
-            _db.Entry<Product>(updatedProduct).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _db.SaveChanges();
+            //_db.Products.Attach(updatedProduct);
+            //_db.Entry<Product>(updatedProduct).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            //_db.SaveChanges();
             // updating specific fields
             Product productToUpdated = _db.Products.Where(p => p.Id == updatedProduct.Id).First();
             productToUpdated.Price = updatedProduct.Price;

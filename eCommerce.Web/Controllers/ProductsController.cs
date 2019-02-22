@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using eCommerce.DAL;
 using eCommerce.Models;
-using eCommerce.Web.ViewModels;
+using eCommerce.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

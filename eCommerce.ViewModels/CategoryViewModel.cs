@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Web.ViewModels
+﻿namespace eCommerce.ViewModels
 {
     public class CategoryViewModel
     {

@@ -5,7 +5,7 @@ namespace eCommerce.DAL
 {
     public interface IProductRepository
     {
-        void Add(Product product);
+        int Add(Product product);
         
         void AddRange(List<Product> products);
        

@@ -17,6 +17,7 @@ namespace eCommerce.Models
         {
             if(!options.IsConfigured)
             {
+                //move to configuration file
                 options.UseSqlServer("data source=.;initial catalog=MyShop;integrated security=true");
 
             }
