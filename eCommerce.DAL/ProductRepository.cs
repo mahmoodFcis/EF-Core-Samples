@@ -86,6 +86,7 @@ namespace eCommerce.DAL
 
         public List<Product> GetBySP(string name)
         {
+            //adding changes
             // return _db.Products.FromSql<Product>("select * from products where Name like '%{0}%'", name).ToList();
 
             // to resolve SQL injection issues
